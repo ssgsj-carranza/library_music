@@ -6,8 +6,6 @@ from rest_framework import status
 from django.http import Http404
 
 
-# Create your views here.
-
 class SongList(APIView):
 
     def get(self, request):
