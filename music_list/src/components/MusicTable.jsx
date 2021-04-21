@@ -10,6 +10,7 @@ const MusicTable = (props) => {
                     <th>Artist</th>
                     <th>Album</th>
                     <th>Release Date</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             {props.mapSongs()}
