@@ -23,9 +23,9 @@ class App extends Component {
     }
 
     addNewSong(song){
-        this.music.push(song);
+        this.state.music.push(song);
         this.setState({
-            songNumber: this.music.length - 1
+            songNumber: this.state.music.length - 1
         });
     }
 
@@ -37,12 +37,20 @@ class App extends Component {
             />
         )
     }
+
+    deleteSong(id){
+        this.setState((prevState) => ({
+            music: prevState.music.filter(song => song.id !== id),
+        }))
+    };
+    
     render(){
         console.log("this.state", this.state);
         return(
             <div>
                 <MusicTable mapSongs={() => this.mapSongs()}/>
                 <SongCreator addNewSong={this.addNewSong.bind(this)}/>
+                <onDelete deleteSong= {this.deleteSong.bind(this)}/>
             </div>
         );
     }
