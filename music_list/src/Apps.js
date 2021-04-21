@@ -32,7 +32,7 @@ class App extends Component {
     mapSongs(){
         return this.state.music.map(music => 
             <Music
-                deleteSong = {this.deleteSong()}
+                deleteSong = {(songId) => this.deleteSong(songId)}
                 key={music.id}
                 music={music}
             />
@@ -50,9 +50,9 @@ class App extends Component {
         console.log("this.state", this.state);
         return(
             <div>
+                <TitleBar />
                 <MusicTable mapSongs={() => this.mapSongs()}/>
                 <SongCreator addNewSong={this.addNewSong.bind(this)}/>
-                <TitleBar />
             </div>
         );
     }
