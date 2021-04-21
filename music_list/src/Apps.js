@@ -3,7 +3,7 @@ import axios from 'axios';
 // import './App.css';
 import MusicTable from './components/MusicTable';
 import Music from './components/Music';
-// import TitleBar from './TitleBar/titleBar'
+import TitleBar from './components/TitleBar/titleBar';
 import SongCreator from './components/SongCreator/songCreator';
 
 class App extends Component {
@@ -32,6 +32,7 @@ class App extends Component {
     mapSongs(){
         return this.state.music.map(music => 
             <Music
+                deleteSong = {this.deleteSong()}
                 key={music.id}
                 music={music}
             />
@@ -39,10 +40,11 @@ class App extends Component {
     }
 
     deleteSong(id){
-        this.setState((prevState) => ({
-            music: prevState.music.filter(song => song.id !== id),
-        }))
-    };
+      axios.delete(`http://127.0.0.1:8000/music/${id}`)
+      .then((res)=>{
+          console.log(res);
+      });
+    }
     
     render(){
         console.log("this.state", this.state);
@@ -50,7 +52,7 @@ class App extends Component {
             <div>
                 <MusicTable mapSongs={() => this.mapSongs()}/>
                 <SongCreator addNewSong={this.addNewSong.bind(this)}/>
-                <onDelete deleteSong= {this.deleteSong.bind(this)}/>
+                <TitleBar />
             </div>
         );
     }

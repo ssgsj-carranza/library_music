@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const Music = (props) => {
     return(
@@ -8,7 +8,7 @@ const Music = (props) => {
                 <td>{props.music.artist}</td>
                 <td>{props.music.album}</td>
                 <td>{props.music.release_date}</td>
-                <button onClick={() => this.props.onDelete(this.props.id)}>Delete</button>
+                <button onClick={props.deleteSong(props.music.id)}>Delete</button>                
             </tr>
         </tbody>
     );
