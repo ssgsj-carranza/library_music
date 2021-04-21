@@ -9,7 +9,7 @@ const Music = (props) => {
                 <td>{props.music.artist}</td>
                 <td>{props.music.album}</td>
                 <td>{props.music.release_date}</td>
-                <button onClick={props.deleteSong(props.music.id)}>Delete</button>                
+                <td><button onClick={() => props.deleteSong(props.music.id)}>Delete</button></td>                
             </tr>
         </tbody>
     );

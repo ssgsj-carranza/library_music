@@ -39,11 +39,9 @@ class App extends Component {
         )
     }
 
-    deleteSong(id){
-      axios.delete(`http://127.0.0.1:8000/music/${id}`)
-      .then((res)=>{
-          console.log(res);
-      });
+    deleteSong(songId){
+       axios.delete(`http://127.0.0.1:8000/music/${songId}`)
+       this.getAllSongs();
     }
     
     render(){
