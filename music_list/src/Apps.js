@@ -4,6 +4,7 @@ import axios from 'axios';
 import MusicTable from './components/MusicTable';
 import Music from './components/Music';
 // import TitleBar from './TitleBar/titleBar'
+import SongCreator from './components/SongCreator/songCreator';
 
 class App extends Component {
     state = {
@@ -21,6 +22,13 @@ class App extends Component {
         })
     }
 
+    addNewSong(song){
+        this.music.push(song);
+        this.setState({
+            songNumber: this.music.length - 1
+        });
+    }
+
     mapSongs(){
         return this.state.music.map(music => 
             <Music
@@ -34,6 +42,7 @@ class App extends Component {
         return(
             <div>
                 <MusicTable mapSongs={() => this.mapSongs()}/>
+                <SongCreator addNewSong={this.addNewSong.bind(this)}/>
             </div>
         );
     }
