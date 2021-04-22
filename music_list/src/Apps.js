@@ -5,6 +5,8 @@ import MusicTable from './components/MusicTable';
 import Music from './components/Music';
 import TitleBar from './components/TitleBar/titleBar';
 import SongCreator from './components/SongCreator/songCreator';
+import {useState, useEffect} from 'react';
+import SearchBar from './components/SearchBar/searchBar';
 
 class App extends Component {
     state = {
