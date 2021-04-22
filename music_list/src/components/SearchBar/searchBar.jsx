@@ -1,15 +1,18 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-const SearchBar = ({keyword, setKeyword}) => {
-    const BarStyling = {width:"20rem", background:"#F2F1F9", border:"none", padding:"0.5rem"};
-    return(
+const Search = (props) => (
+    <form action="/" method="get">
+        <label htmlFor="header-search">
+            <span className="visually hidden">Search</span>
+        </label>
         <input
-        style={BarStyling}
-        key="random1"
-        value={keyword}
-        placeholder={"search song"}
-        onChange={(e) => setKeyword(e.target.value)}
-        />
-    )
-}
-export default SearchBar
+            type="text" 
+            id="header search" 
+            placeholder="search" 
+            name="s"/>
+        <button onClick={() => props.filterSong(props.music.id)}>Search</button>
+        {/* {props.mapSongs()} */}
+    </form>
+);
+
+export default Search;

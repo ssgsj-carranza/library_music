@@ -1,22 +1,24 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 // import './App.css';
-import MusicTable from './components/MusicTable';
+import MusicTable from './components/MusicTable/MusicTable';
 import Music from './components/Music';
 import TitleBar from './components/TitleBar/titleBar';
 import SongCreator from './components/SongCreator/songCreator';
-import {useState, useEffect} from 'react';
-import SearchBar from './components/SearchBar/searchBar';
+// import {useState, useEffect} from 'react';
+import Search from './components/SearchBar/searchBar'
+
 
 class App extends Component {
     state = {
         music: []
     }
-
+    
     componentDidMount(){
         this.getAllSongs();
         console.log(this.state.music)
 }
+    
     async getAllSongs(){
         let response = await axios.get('http://127.0.0.1:8000/music/')
         this.setState({
@@ -34,11 +36,17 @@ class App extends Component {
     mapSongs(){
         return this.state.music.map(music => 
             <Music
+                filterSong = {(songId) => this.filterSong(songId)}
                 deleteSong = {(songId) => this.deleteSong(songId)}
                 key={music.id}
                 music={music}
             />
         )
+    }
+
+    filterSong(songId){
+        axios.filter(`http://127.0.0.1:8000/music/${songId}`)
+        this.getAllSongs();
     }
 
     deleteSong(songId){
@@ -51,6 +59,7 @@ class App extends Component {
         return(
             <div>
                 <TitleBar />
+                <Search />
                 <MusicTable mapSongs={() => this.mapSongs()}/>
                 <SongCreator addNewSong={this.addNewSong.bind(this)}/>
             </div>
