@@ -1,4 +1,5 @@
 import React from 'react';
+import './titleBar.css'
 
 function TitleBar(props) {
     return (

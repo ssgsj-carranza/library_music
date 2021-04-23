@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import './songCreator.css';
+
 
 class SongCreator extends Component {
     constructor(props) {
@@ -50,7 +52,7 @@ class SongCreator extends Component {
                             <input type=" text" name="title" value={this.state.title}
                             onChange={this.handleChange}/>
                         </div>
-                        <div className="col=md-4">
+                        <div className="col-md-4">
                             <label>Artist:</label>
                             <input type=" text" name="artist" value={this.state.artist}
                             onChange={this.handleChange}/>
@@ -60,7 +62,7 @@ class SongCreator extends Component {
                             <input type="text" name="album" value={this.state.album}
                             onChange={this.handleChange}/>
                         </div>
-                        <div className="col=md=4">
+                        <div className="col-md-4">
                             <label>Release Date:</label>
                             <input type="text" name="release_date" value={this.state.release_date}
                             onChange={this.handleChange}/>
