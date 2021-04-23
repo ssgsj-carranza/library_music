@@ -61,17 +61,31 @@ class App extends Component {
        this.getAllSongs();
     }
 
-    filterSongs(input){
-        axios.filter(`http://127.0.0.1:8000/music/${input}`)
-        this.getAllSongs();
-    }
+    handleChange = event => {
+        this.setState({userInput: event.target.value}, () =>{
+            this.globalSearch();
+        });
+    };
+
+    globalSearch= () =>{
+        let{userInput}= this.state;
+        let filterSong= this.state.music.filter(element => {
+            return(
+                element.title.toLowerCase().includes(userInput.toLowerCase()) ||
+                element.artist.toLowerCase().includes(userInput.toLowerCase()) ||
+                element.album.toLowerCase().includes(userInput.toLowerCase()) ||
+                element.release_date.toLowerCase().includes(userInput.toLowerCase())
+            );
+        });
+        this.setState({filterSong});
+    };
     
     render(){
         console.log("this.state", this.state);
         return(
             <div>
                 <TitleBar />
-                <SearchBar filterSongs={(input) => this.filterSongs(input)} />
+                <SearchBar globalSearch={this.globalSearch} />
                 <MusicTable mapSongs={() => this.mapSongs()}/>
                 <SongCreator addNewSong={this.addNewSong.bind(this)}/>
             </div>

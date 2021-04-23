@@ -1,11 +1,15 @@
-.visually-hidden {
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
-    background-color: black;
-    color: white
+.header {
+    background-color: white;
+    text-align: center;
 }
+
+
+
+
+
+
+
+
+
+
+
