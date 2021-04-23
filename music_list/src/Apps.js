@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, {Component} from 'react';
 import axios from 'axios';
 // import './App.css';
 import MusicTable from './components/MusicTable/MusicTable';
@@ -61,31 +61,28 @@ class App extends Component {
        this.getAllSongs();
     }
 
-    handleChange = event => {
-        this.setState({userInput: event.target.value}, () =>{
-            this.globalSearch();
+    handleChange = (event) => {
+        console.log("test")
+        this.setState({userInput: event.target.value});
+        const filteredSong = this.state.music.filter(search => {
+            return search.title.toLowerCase().includes(this.state.userInput) ||
+            search.artist.toLowerCase().includes(this.state.userInput) ||
+            search.album.toLowerCase().includes(this.state.userInput) ||
+            search.release_date.toLowerCase().includes(this.state.userInput)
         });
-    };
+        console.log(filteredSong);
+        this.setState({filterSong:filteredSong})   
+    }
 
-    globalSearch= () =>{
-        let{userInput}= this.state;
-        let filterSong= this.state.music.filter(element => {
-            return(
-                element.title.toLowerCase().includes(userInput.toLowerCase()) ||
-                element.artist.toLowerCase().includes(userInput.toLowerCase()) ||
-                element.album.toLowerCase().includes(userInput.toLowerCase()) ||
-                element.release_date.toLowerCase().includes(userInput.toLowerCase())
-            );
-        });
-        this.setState({filterSong});
-    };
+
+           
     
     render(){
         console.log("this.state", this.state);
         return(
             <div>
                 <TitleBar />
-                <SearchBar globalSearch={this.globalSearch} />
+                <SearchBar handleChange={this.handleChange} />
                 <MusicTable mapSongs={() => this.mapSongs()}/>
                 <SongCreator addNewSong={this.addNewSong.bind(this)}/>
             </div>

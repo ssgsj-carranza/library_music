@@ -29,14 +29,14 @@ import './searchBar.css'
 
 const SearchBar = (props) =>{
     return(
-        <form action="/" method="get">
-            <label htmlFor="header-search">
-                <span className="header">Search</span>
-            </label>
-            <input
-                onChange={props.handleChange}
-            />
-        </form>
+        <div>
+        <label htmlFor="header-search">
+            <span className="header">Search</span>
+        </label>
+        <input
+            onChange={props.handleChange}
+        />
+        </div>
     )
 }
 
